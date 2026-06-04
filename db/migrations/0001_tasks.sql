@@ -1,6 +1,11 @@
 -- Run this in your Supabase SQL editor:
 -- https://supabase.com/dashboard/project/fdmahmzuyvtbwukjjsjf/sql/new
 
+-- GRANTs must come before RLS policies for the Data API to work
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.tasks TO anon;
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.tasks TO authenticated;
+GRANT ALL ON public.tasks TO service_role;
+
 create table if not exists public.tasks (
   id uuid primary key default gen_random_uuid(),
   title text not null,
@@ -9,6 +14,11 @@ create table if not exists public.tasks (
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
+
+-- Grant privileges on the table to roles
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.tasks TO anon;
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.tasks TO authenticated;
+GRANT ALL ON public.tasks TO service_role;
 
 alter table public.tasks enable row level security;
 

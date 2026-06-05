@@ -1,0 +1,13 @@
+{
+  "expo": {
+    "name": "Task Manager",
+    "slug": "taskmanager-mobile",
+    "version": "1.0.0",
+    "scheme": "taskmanager",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "plugins": ["expo-router"],
+    "ios": { "supportsTablet": true, "bundleIdentifier": "com.example.taskmanager" },
+    "android": { "package": "com.example.taskmanager" }
+  }
+}
